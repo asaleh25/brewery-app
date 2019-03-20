@@ -62,22 +62,23 @@ class Beers extends React.Component {
           search={true} strictSearch={false} options={this.options} version='4'
           pagination={true}>
           <TableHeaderColumn isKey={true} dataField='beerName' dataSort={true}
-            caretRender={this.caret}>
+            caretRender={this.caret} width='20%' tdStyle={{whiteSpace: 'normal'}}>
             Beer Name
           </TableHeaderColumn>
-          <TableHeaderColumn dataField='beerDesc' searchable={false}>
+          <TableHeaderColumn dataField='beerDesc' searchable={false}
+            tdStyle={{whiteSpace: 'normal'}}>
             Description
           </TableHeaderColumn>
           <TableHeaderColumn dataField='abv' searchable={false} dataSort={true}
-            caretRender={this.caret}>
+            caretRender={this.caret} width='15%'>
             Percent Alcohol
           </TableHeaderColumn>
           <TableHeaderColumn dataField='ibu' searchable={false} dataSort={true}
-            caretRender={this.caret}>
+            caretRender={this.caret} width='5%'>
             IBU
           </TableHeaderColumn>
           <TableHeaderColumn dataField='gravity' searchable={false} dataSort={true}
-            caretRender={this.caret}>
+            caretRender={this.caret} width='10%'>
             Gravity
           </TableHeaderColumn>
         </BootstrapTable>
