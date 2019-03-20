@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import ReactTable from 'react-table';
-import 'react-table/react-table.css'
+import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 import './index.css';
 
+let order = 'desc';
 class Beers extends React.Component {
   constructor() {
     super();
@@ -35,42 +36,32 @@ class Beers extends React.Component {
   }
 
   componentDidMount() {
-    // for (var i = 1; i < 5; i++) {
-    //   this.query(i)
-    // }
-    this.query(1);
-    this.query(2);
+    this.query(5)
   }
 
   render() {
-    let tableBody = this.state.beers.map((beer) => {
-      return (
-        <tr key={beer.key}>
-          <td>{beer.beerName}</td>
-          <td>{beer.beerDesc}</td>
-          <td>{beer.abv}</td>
-          <td>{beer.ibu}</td>
-          <td>{beer.gravity}</td>
-        </tr>
-      )
-    })
-    return(
-      <div className = "table-responsive">
-        <table className = "table table-bordered table-striped table-sm">
-          <thead className = "thead-light">
-            <tr>
-              <th scope = "col">Beer Name</th>
-              <th scope = "col">Description</th>
-              <th scope = "col">Percent Alcohol</th>
-              <th scope = "col">IBU</th>
-              <th scope = "col">Gravity</th>
-            </tr>
-          </thead>
-          <tbody>
-            {tableBody}
-          </tbody>
-        </table>
-    </div>
+    return (
+      <div>
+        <BootstrapTable className='table table-striped table-sortable' data={this.state.beers}
+          search={true} strictSearch={false} options={this.options} version='4'
+          pagination={true}>
+          <TableHeaderColumn isKey={true} dataField='beerName' dataSort={true}>
+            Beer Name
+          </TableHeaderColumn>
+          <TableHeaderColumn dataField='beerDesc' searchable={false}>
+            Description
+          </TableHeaderColumn>
+          <TableHeaderColumn dataField='abv' searchable={false} dataSort={true}>
+            Percent Alcohol
+          </TableHeaderColumn>
+          <TableHeaderColumn dataField='ibu' searchable={false} dataSort={true}>
+            IBU
+          </TableHeaderColumn>
+          <TableHeaderColumn dataField='gravity' searchable={false} dataSort={true}>
+            Gravity
+          </TableHeaderColumn>
+        </BootstrapTable>
+      </div>
     )
   }
 }
