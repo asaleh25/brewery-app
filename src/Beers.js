@@ -39,25 +39,45 @@ class Beers extends React.Component {
     this.query(5)
   }
 
+  caret(direction) {
+    if (direction === 'asc') {
+      return (
+        <i class="fas fa-sort-up"></i>
+      );
+    }
+    if (direction === 'desc') {
+      return (
+        <i class="fas fa-sort-down"></i>
+      );
+    }
+    return (
+      <i class="fas fa-sort"></i>
+    )
+  }
+
   render() {
     return (
       <div>
         <BootstrapTable className='table table-striped table-sortable' data={this.state.beers}
           search={true} strictSearch={false} options={this.options} version='4'
           pagination={true}>
-          <TableHeaderColumn isKey={true} dataField='beerName' dataSort={true}>
+          <TableHeaderColumn isKey={true} dataField='beerName' dataSort={true}
+            caretRender={this.caret}>
             Beer Name
           </TableHeaderColumn>
           <TableHeaderColumn dataField='beerDesc' searchable={false}>
             Description
           </TableHeaderColumn>
-          <TableHeaderColumn dataField='abv' searchable={false} dataSort={true}>
+          <TableHeaderColumn dataField='abv' searchable={false} dataSort={true}
+            caretRender={this.caret}>
             Percent Alcohol
           </TableHeaderColumn>
-          <TableHeaderColumn dataField='ibu' searchable={false} dataSort={true}>
+          <TableHeaderColumn dataField='ibu' searchable={false} dataSort={true}
+            caretRender={this.caret}>
             IBU
           </TableHeaderColumn>
-          <TableHeaderColumn dataField='gravity' searchable={false} dataSort={true}>
+          <TableHeaderColumn dataField='gravity' searchable={false} dataSort={true}
+            caretRender={this.caret}>
             Gravity
           </TableHeaderColumn>
         </BootstrapTable>
