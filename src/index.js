@@ -1,16 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Beers from './Beers.js'
+import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
 
 class App extends React.Component {
     render() {
         return(
           <div>
-            <div className="test">
-              Hello World
+            <div className="container">
+              <h1>Beer Lookup</h1>
             </div>
-            <Beers />
+            <div className="container">
+              <Beers />
+            </div>
           </div>
         )
     }

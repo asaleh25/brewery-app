@@ -11,9 +11,8 @@ class Beers extends React.Component {
     };
   }
 
-  componentDidMount() {
-    let pageNum = 13;
-    let url = `https://sandbox-api.brewerydb.com/v2/beers/?key=20b378f58ba545551afeaf7f29820c4c&p=${pageNum}`
+  query(pageNum) {
+    let url = `https://sandbox-api.brewerydb.com/v2/beers/?key=20b378f58ba545551afeaf7f29820c4c&p=${pageNum}`;
     fetch(url)
       .then(results => {
         return results.json();
@@ -29,17 +28,18 @@ class Beers extends React.Component {
               "ibu": beer.ibu,
               "gravity": beer.originalGravity
             }
-            // <tr key={beer.id}>
-            //   <td>{beer.nameDisplay}</td>
-            //   <td>{beer.description}</td>
-            //   <td>{beer.abv}</td>
-            //   <td>{beer.ibu}</td>
-            //   <td>{beer.originalGravity}</td>
-            // </tr>
           )
         })
         this.setState({beers: beers});
       })
+  }
+
+  componentDidMount() {
+    // for (var i = 1; i < 5; i++) {
+    //   this.query(i)
+    // }
+    this.query(1);
+    this.query(2);
   }
 
   render() {
@@ -55,20 +55,22 @@ class Beers extends React.Component {
       )
     })
     return(
-      <table className="beerTable">
-        <thead>
-          <tr>
-            <th>Beer Name</th>
-            <th>Description</th>
-            <th>Percent Alcohol</th>
-            <th>IBU</th>
-            <th>Gravity</th>
-          </tr>
-        </thead>
-        <tbody>
-          {tableBody}
-        </tbody>
-      </table>
+      <div className = "table-responsive">
+        <table className = "table table-bordered table-striped table-sm">
+          <thead className = "thead-light">
+            <tr>
+              <th scope = "col">Beer Name</th>
+              <th scope = "col">Description</th>
+              <th scope = "col">Percent Alcohol</th>
+              <th scope = "col">IBU</th>
+              <th scope = "col">Gravity</th>
+            </tr>
+          </thead>
+          <tbody>
+            {tableBody}
+          </tbody>
+        </table>
+    </div>
     )
   }
 }
